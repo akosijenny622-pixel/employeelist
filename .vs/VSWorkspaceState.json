@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\config",
+    "\\config\\employees",
+    "\\config\\employees\\templates",
+    "\\config\\employees\\templates\\employees",
+    "\\config\\employees\\templates\\employees\\templates",
+    "\\config\\security_management",
+    "\\config\\security_management\\templates",
+    "\\config\\security_management\\templates\\security_management"
+  ],
+  "SelectedNode": "\\config\\security_management\\templates\\security_management\\molecules",
+  "PreviewInSolutionExplorer": false
+}

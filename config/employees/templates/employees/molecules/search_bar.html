@@ -1,0 +1,24 @@
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-4">
+        <input type="text" name="q" class="form-control" placeholder="Search employees..." value="{{ query }}">
+    </div>
+    <div class="col-md-3">
+        <select name="department" class="form-select">
+            <option value="">All Departments</option>
+            {% for value, label in departments %}
+            <option value="{{ value }}" {% if department == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3">
+        <select name="status" class="form-select">
+            <option value="">All Statuses</option>
+            {% for value, label in statuses %}
+            <option value="{{ value }}" {% if status == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+    </div>
+</form>

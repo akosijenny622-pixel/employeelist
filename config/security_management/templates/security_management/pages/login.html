@@ -1,0 +1,30 @@
+{% extends 'employees/templates/base.html' %} 
+{% block title %}Login - Employee Management{% endblock %} 
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center align-items-center" style="min-height: 100vh">
+    <div class="col-md-4">
+      {% if already_logged_in %}
+        <div class="card shadow">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Already Logged In</h5>
+          </div>
+          <div class="card-body">
+            {% include 'security_management/molecules/already_logged_in_content.html' %}
+          </div>
+        </div>
+      {% else %}
+        {% include 'security_management/atoms/alert.html' %}
+        <div class="card shadow">
+          <div class="card-header">
+            <h5 class="card-title mb-0 text-center">Employee Login</h5>
+          </div>
+          <div class="card-body p-4">
+            {% include 'security_management/molecules/login_form.html' %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

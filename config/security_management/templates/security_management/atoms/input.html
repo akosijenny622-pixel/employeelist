@@ -1,0 +1,6 @@
+<div class="form-group mb-3">
+  <label for="{{ id }}" class="form-label">{{ label }}</label>
+  <input type="{{ type|default:'text' }}" class="form-control {{ class }}"
+  id="{{ id }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{
+  value }}" {{ required|yesno:'required,' }}>
+</div>

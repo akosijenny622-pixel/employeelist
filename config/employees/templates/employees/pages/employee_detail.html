@@ -1,0 +1,117 @@
+{% extends 'employees/templates/base.html' %}
+{% block title %}Employee Detail{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <!-- Breadcrumb Navigation -->
+  <nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="{% url 'employee_list' %}">Employees</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">{{ employee.employee_id }}</li>
+    </ol>
+  </nav>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2><i class="fas fa-user me-2"></i>Employee Detail</h2>
+    <div class="d-flex gap-2">
+      <a href="{% url 'employee_update' employee.pk %}" class="btn btn-warning">
+        <i class="fas fa-edit me-1"></i>Edit
+      </a>
+      <a href="{% url 'employee_delete' employee.pk %}" class="btn btn-danger">
+        <i class="fas fa-trash me-1"></i>Delete
+      </a>
+      <a href="{% url 'employee_list' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-1"></i>Back to List
+      </a>
+    </div>
+  </div>
+
+  {% include 'employees/atoms/alert.html' %}
+
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">{{ employee.employee_id }} - {{ employee.user.get_full_name|default:employee.user.username }}</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h5 class="text-primary">User Information</h5>
+              <dl class="row">
+                <dt class="col-sm-4">First Name:</dt>
+                <dd class="col-sm-8">{{ employee.user.first_name|default:"Not provided" }}</dd>
+
+                <dt class="col-sm-4">Last Name:</dt>
+                <dd class="col-sm-8">{{ employee.user.last_name|default:"Not provided" }}</dd>
+
+                <dt class="col-sm-4">Username:</dt>
+                <dd class="col-sm-8">{{ employee.user.username }}</dd>
+
+                <dt class="col-sm-4">Email:</dt>
+                <dd class="col-sm-8">{{ employee.user.email|default:"Not provided" }}</dd>
+
+                <dt class="col-sm-4">Phone:</dt>
+                <dd class="col-sm-8">{{ employee.user.phone|default:"Not provided" }}</dd>
+              </dl>
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="text-primary">Employment Details</h5>
+              <dl class="row">
+                <dt class="col-sm-4">Employee ID:</dt>
+                <dd class="col-sm-8"><strong>{{ employee.employee_id }}</strong></dd>
+
+                <dt class="col-sm-4">Department:</dt>
+                <dd class="col-sm-8">{{ employee.get_department_display }}</dd>
+
+                <dt class="col-sm-4">Position:</dt>
+                <dd class="col-sm-8">{{ employee.position }}</dd>
+
+                <dt class="col-sm-4">Hire Date:</dt>
+                <dd class="col-sm-8">{{ employee.hire_date|date:"F j, Y" }}</dd>
+
+                <dt class="col-sm-4">Salary:</dt>
+                <dd class="col-sm-8">${{ employee.salary|floatformat:2 }}</dd>
+
+                <dt class="col-sm-4">Status:</dt>
+                <dd class="col-sm-8">
+                  {% if employee.status == 'active' %}
+                  <span class="badge bg-success">Active</span>
+                  {% elif employee.status == 'inactive' %}
+                  <span class="badge bg-danger">Inactive</span>
+                  {% elif employee.status == 'on_leave' %}
+                  <span class="badge bg-warning">On Leave</span>
+                  {% else %}
+                  <span class="badge bg-secondary">{{ employee.get_status_display }}</span>
+                  {% endif %}
+                </dd>
+              </dl>
+            </div>
+          </div>
+
+          {% if employee.address %}
+          <hr />
+          <h6 class="text-primary">Address</h6>
+          <p>{{ employee.address }}</p>
+          {% endif %}
+
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <small class="text-muted">Created: {{ employee.created_at|date:"F j, Y g:i A" }}</small>
+            </div>
+            <div class="col-md-6 text-end">
+              <small class="text-muted">Last Updated: {{ employee.updated_at|date:"F j, Y g:i A" }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

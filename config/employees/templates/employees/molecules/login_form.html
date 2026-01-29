@@ -1,0 +1,19 @@
+<form method="post" class="{{ form_class }}">
+  {% csrf_token %}
+  
+  {% include 'employees/atoms/input.html' with type='text' id='id_username' name='username' label='Username' placeholder='Enter your username' value=form.username.value required=true class='form-control' %}
+  
+  {% include 'employees/atoms/input.html' with type='password' id='id_password' name='password' label='Password' placeholder='Enter your password' required=true class='form-control' %}
+  
+  {% if form.errors %}
+  <div class="alert alert-danger mb-3">
+    Invalid username or password.
+  </div>
+  {% endif %}
+  
+  {% include 'employees/atoms/button.html' with type='submit' variant='primary' class='w-100' text='Login' %}
+  
+  <div class="text-center mt-3">
+    <small>Don't have an account? <a href="{% url 'security_management:signup' %}">Sign up</a></small>
+  </div>
+</form>

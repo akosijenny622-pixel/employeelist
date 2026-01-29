@@ -1,0 +1,8 @@
+<div class="alert alert-info">
+  You are already logged in as
+  <strong>{{ user.get_full_name|default:user.username }}</strong>.
+  <div class="mt-2">
+    <a href="{% url 'dashboard' %}" class="btn btn-primary btn-sm">Go to Dashboard</a>
+    <a href="{% url 'security_management:logout' %}" class="btn btn-secondary btn-sm ms-2">Logout</a>
+  </div>
+</div>
