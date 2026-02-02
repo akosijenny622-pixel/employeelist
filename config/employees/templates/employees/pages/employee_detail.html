@@ -36,8 +36,7 @@
     <div class="col-md-10">
       <div class="card slide-up">
         <div class="card-header">
-          <h5 class="mb-0 gradient-text">{{ employee.employee_id }} - {{
-            employee.user.get_full_name|default:employee.user.username }}</h5>
+          <h5 class="mb-0 gradient-text">{{ employee.employee_id }} - {{ employee.user.get_full_name|default:employee.user.username }}</h5>
         </div>
         <div class="card-body">
           <div class="row">
