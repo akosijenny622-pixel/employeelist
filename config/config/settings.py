@@ -25,12 +25,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-1h_4h!g=5urml3trq24o#lyyv*_n3p+g@^cc5z6ur9muo00&jd')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Get the Render external URL if available
 RENDER_EXTERNAL_URL = os.environ.get('RENDER_EXTERNAL_URL')
+
+# Add Render hostname to ALLOWED_HOSTS if available
+if RENDER_EXTERNAL_URL:
+    from urllib.parse import urlparse
+    render_host = urlparse(RENDER_EXTERNAL_URL).netloc
+    if render_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(render_host)
 
 # In development we allow the local hosts as trusted origins for CSRF.
 # If you access the dev server via a different host or port (for example
