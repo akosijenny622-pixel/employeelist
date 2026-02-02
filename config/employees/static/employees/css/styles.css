@@ -562,6 +562,34 @@ h6 {
   margin: 0.5rem 0;
 }
 
+/* Enhanced Dropdown Toggle for Better Visibility */
+.navbar .dropdown-toggle {
+  background: rgba(99, 102, 241, 0.1);
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--radius-md);
+  color: #1e293b !important;
+  font-weight: 600;
+  transition: all var(--transition-base);
+}
+
+.navbar .dropdown-toggle:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+}
+
+.navbar .dropdown-toggle::after {
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  border-top-color: #1e293b;
+}
+
+.dropdown-item-text {
+  color: #475569 !important;
+}
+
 /* ================================================
    STATISTICS CARDS (Dashboard)
    ================================================ */
