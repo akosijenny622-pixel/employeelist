@@ -10,7 +10,17 @@ class User(AbstractUser):
     phone = models.CharField(max_length=15, blank=True)
 
     def is_admin(self):
-        return self.role == 'admin'
+        return self.role == 'admin' or self.is_superuser or self.is_staff
+
+    def get_role_display(self):
+        """
+        Override the default get_role_display to check superuser/staff status.
+        This ensures admins are always displayed correctly even if role field wasn't set.
+        """
+        if self.is_superuser or self.is_staff or self.role == 'admin':
+            return 'Admin'
+        # Otherwise use the role field
+        return dict(self.ROLE_CHOICES).get(self.role, 'Employee')
 
 class Employee(models.Model):
     DEPARTMENT_CHOICES = (
