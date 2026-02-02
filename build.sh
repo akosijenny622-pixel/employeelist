@@ -3,7 +3,7 @@
 set -o errexit
 
 # Install Python dependencies
-pip install -r requirements.txt
+pip install --upgrade -r requirements.txt
 
 # Navigate to the config directory where manage.py is located
 cd config
