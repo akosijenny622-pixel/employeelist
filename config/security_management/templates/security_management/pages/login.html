@@ -1,29 +1,32 @@
-{% extends 'employees/templates/base.html' %} 
-{% block title %}Login - Employee Management{% endblock %} 
+{% extends 'employees/templates/base.html' %}
+{% block title %}Login - Employee Management{% endblock %}
 {% block content %}
-<div class="container">
-  <div class="row justify-content-center align-items-center" style="min-height: 100vh">
-    <div class="col-md-4">
-      {% if already_logged_in %}
-        <div class="card shadow">
-          <div class="card-header">
-            <h5 class="card-title mb-0">Already Logged In</h5>
+<div class="login-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        {% if already_logged_in %}
+        <div class="login-card slide-up">
+          <div class="text-center mb-4">
+            <h3 class="gradient-text mb-2">Already Logged In</h3>
+            <p class="text-muted">You are currently logged in to the system</p>
           </div>
-          <div class="card-body">
-            {% include 'security_management/molecules/already_logged_in_content.html' %}
-          </div>
+          {% include 'security_management/molecules/already_logged_in_content.html' %}
         </div>
-      {% else %}
+        {% else %}
         {% include 'security_management/atoms/alert.html' %}
-        <div class="card shadow">
-          <div class="card-header">
-            <h5 class="card-title mb-0 text-center">Employee Login</h5>
+        <div class="login-card slide-up">
+          <div class="text-center mb-4">
+            <div class="mb-3">
+              <i class="fas fa-user-shield fa-3x gradient-text"></i>
+            </div>
+            <h3 class="gradient-text mb-2">Employee Login</h3>
+            <p class="text-muted">Welcome back! Please login to your account</p>
           </div>
-          <div class="card-body p-4">
-            {% include 'security_management/molecules/login_form.html' %}
-          </div>
+          {% include 'security_management/molecules/login_form.html' %}
         </div>
-      {% endif %}
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>
